@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL_REGISTER = "api/users/";
-const API_URL_LOGIN = "api/users/login/";
+const API_URL_REGISTER = "https://goal-backend.onrender.com/api/users/";
+const API_URL_LOGIN = "https://goal-backend.onrender.com/api/users/login/";
 
 const register = async (userData) => {
   const response = await axios.post(API_URL_REGISTER, userData);

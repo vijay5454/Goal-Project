@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GOALS_GET_URL = "api/goals/";
+const GOALS_GET_URL = "https://goal-backend.onrender.com/api/goals/";
 
 //Get Goals
 const getGoals = async (token) => {

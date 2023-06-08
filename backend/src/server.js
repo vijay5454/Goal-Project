@@ -3,12 +3,18 @@ const dotenv = require("dotenv").config();
 const goalRouter = require("./routes/GoalRouter");
 const userRouter = require("./routes/UserRouter");
 const dbConnection = require("./db/mongo");
+const cors = require("cors");
 const { ErrorHandler } = require("./middlewares/ErrorHandler");
 const { InvalidPathHandler } = require("./middlewares/InvalidPathHandler");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 app.use("/api/goals", goalRouter);
 app.use("/api/users", userRouter);
