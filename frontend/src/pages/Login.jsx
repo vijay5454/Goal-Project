@@ -31,12 +31,13 @@ const Login = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message);
+      dispatch(reset());
     }
     if (isSuccess || user) {
       toast.info("Login Successful!");
       navigate("/");
+      dispatch(reset());
     }
-    dispatch(reset());
   }, [isError, message, isSuccess, user, dispatch, navigate, isLoading]);
   if (isLoading) {
     return <Spinner />;

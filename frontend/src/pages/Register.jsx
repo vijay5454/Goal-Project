@@ -23,11 +23,12 @@ const Register = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message);
+      dispatch(reset());
     }
     if (isSuccess || user) {
       navigate("/");
+      dispatch(reset());
     }
-    dispatch(reset());
   }, [user, isError, isLoading, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {

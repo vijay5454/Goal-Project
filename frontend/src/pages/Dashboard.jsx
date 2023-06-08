@@ -9,7 +9,7 @@ const Dashboard = () => {
     return state.auth;
   });
   useEffect(() => {
-    if (!user) {
+    if (user == null) {
       navigate("/login");
     }
   }, [user, navigate]);
