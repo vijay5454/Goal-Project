@@ -9,8 +9,7 @@ const getGoals = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  console.log(response);
-  return response;
+  return response.data;
 };
 
 //Create Goal

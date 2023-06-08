@@ -18,11 +18,12 @@ const Header = () => {
       <ul className="flex justify-between items-center space-x-5">
         {user ? (
           <button
-            className="px-5 py-2 bg-black text-white rounded-lg"
+            className="px-5 py-2 bg-black text-white rounded-lg flex justify-center items-center gap-2"
             onClick={() => {
               dispatch(logout());
             }}
           >
+            <FaSignOutAlt />
             Logout
           </button>
         ) : (

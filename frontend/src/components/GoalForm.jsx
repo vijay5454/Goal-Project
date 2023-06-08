@@ -1,15 +1,32 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { create_goals } from "../features/goalSlice";
 import { reset } from "../features/goalSlice";
+import { toast } from "react-toastify";
 
 const GoalForm = () => {
+  const dispatch = useDispatch();
+  const { isError, message, isSuccess } = useSelector((state) => {
+    return state.goals;
+  });
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    if (message.length && !isError) {
+      toast.info(message);
+    }
+  }, [isError, message]);
+  useEffect(() => {
+    if (isError || isSuccess) {
+      dispatch(reset());
+    }
+  }, [dispatch, isError, isSuccess]);
   const [goalForm, setGoalForm] = useState({
     goalType: "",
     definition: "",
   });
   const { goalType, definition } = goalForm;
-  const dispatch = useDispatch();
   const handleChange = (e) => {
     setGoalForm((prevState) => {
       return { ...prevState, [e.target.name]: e.target.value };
@@ -22,7 +39,7 @@ const GoalForm = () => {
   };
   return (
     <form
-      className="max-w-md mx-auto flex flex-col gap-4"
+      className="max-w-md mx-auto flex flex-col gap-4 mt-5"
       onSubmit={handleSubmit}
     >
       <input
